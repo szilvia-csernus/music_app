@@ -7,9 +7,11 @@
     <%end%>
 </ul>
 
-<ul>
-    <li><%= button_to "New Album", new_band_album_url(@band), method: :get%></li>
-    <li><%= button_to "Edit Band", edit_band_url(@band), method: :get%></li>
-    <li><%= button_to "Delete Band", band_url(@band), method: :delete%></li>
-    <li><%= button_to "All Bands", bands_url, method: :get%></li>
-</ul>
+<% if current_user_admin? %>
+    <ul>
+        <li><%= button_to "New Album", new_band_album_url(@band), method: :get%></li>
+        <li><%= button_to "Edit Band", edit_band_url(@band), method: :get%></li>
+        <li><%= button_to "Delete Band", band_url(@band), method: :delete%></li>
+        <li><%= button_to "All Bands", bands_url, method: :get%></li>
+    </ul>
+<% end %>

@@ -1,6 +1,7 @@
 class BandsController < ApplicationController
     before_action :require_current_user!
-    
+    #before_action :current_user_admin?, only: [:index, :flip_admin_rights]
+
     def index
         @bands = Band.all
         render :index

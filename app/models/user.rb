@@ -53,4 +53,13 @@ class User < ApplicationRecord
     def activated?
         self.activated
     end
+
+    def flip_admin!
+        self.toggle(:admin)
+        self.save!
+    end
+
+    def admin?
+        self.admin
+    end
 end

@@ -1,10 +1,22 @@
 class ApplicationController < ActionController::Base
     
-    helper_method :current_user
+    helper_method :current_user, :current_user_admin?
     
     def current_user
         return nil if self.session[:session_token].nil?
         @user ||= User.find_by(session_token: self.session[:session_token])
+    end
+
+    def current_user_admin?
+        current_user.admin?
+    end
+
+    def require_current_user_admin!
+        unless current_user_admin?
+            flash[:notices] ||= []
+            flash[:notices] << "Access Denied!"
+            redirect_to root_url
+        end
     end
 
     def logged_in?

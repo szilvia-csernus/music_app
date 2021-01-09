@@ -1,0 +1,8 @@
+<% button_text = user.admin? ? "Remove Admin Privaleges" : "Grant Admin Privileges" %>
+
+<li>
+    <%= user.email %>
+    <% if current_user_admin? %>
+        <%= button_to button_text, flip_admin_rights_user_url(user), method: :get%>
+    <% end %>
+</li>

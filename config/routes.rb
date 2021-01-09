@@ -7,6 +7,12 @@ Rails.application.routes.draw do
       get 'activate'
     end
   end
+
+  resources :users, only: :index do
+    member do
+      get 'flip_admin_rights'
+    end
+  end
   
   resources :bands do
     resources :albums, only: [:new]

@@ -43,7 +43,9 @@
 
 <%= render '/notes/form', track_id: @track.id %>
 
-<%= button_to "Album\'s Page", album_url(@album), method: :get%>
-<%= button_to "Edit Track", edit_track_url(@track), method: :get%>
-<%= button_to "Delete Track", track_url(@track), method: :delete%>
+<% if current_user_admin? %>
+    <%= button_to "Album\'s Page", album_url(@album), method: :get%>
+    <%= button_to "Edit Track", edit_track_url(@track), method: :get%>
+    <%= button_to "Delete Track", track_url(@track), method: :delete%>
+<% end %>
 

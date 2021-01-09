@@ -17,9 +17,9 @@ class NotesController < ApplicationController
     def destroy
         @note = Note.find_by(id: params[:id])
         @track = @note.track
-        unless current_user.id == @note.user_id
+        unless (current_user.id == @note.user_id) || current_user_admin?
             flash[:errors] ||= []
-            flash[:errors] << "You shouldn\'t try to erase others\' comments! status: 403 FORBIDDEN"
+            flash[:errors] << "Access denied to erase comment! status: 403 FORBIDDEN"
             redirect_to track_url(@track)
             return
         end
