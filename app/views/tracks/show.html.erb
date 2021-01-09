@@ -1,0 +1,49 @@
+
+<h2><%= @track.title %></h2>
+
+<table>
+    <tbody>
+        <tr>
+            <td>Album: </td>
+            <td><%= @album.title %></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Title: </td>
+            <td><%= @track.title %></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Order: </td>
+            <td><%= @track.ord %></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Track type: </td>
+            <td><%= @track.bonus ? "Bonus" : "Regular" %></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>Lyrics: </td>
+            <td><%= ugly_lyrics(@track.lyrics) %></td>
+        </tr>
+    </tbody>
+
+</table>
+
+<ul>
+    <%= render @notes %>
+</ul>
+
+<%= render "layouts/errors" %>
+
+<%= render '/notes/form', track_id: @track.id %>
+
+<%= button_to "Album\'s Page", album_url(@album), method: :get%>
+<%= button_to "Edit Track", edit_track_url(@track), method: :get%>
+<%= button_to "Delete Track", track_url(@track), method: :delete%>
+

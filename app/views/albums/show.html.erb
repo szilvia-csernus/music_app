@@ -1,0 +1,15 @@
+<%= render "layouts/errors" %>
+
+<h2><%= @album.title %></h2>
+<ul>
+    <% @album.tracks.each do |track| %>
+        <li><%= button_to track.title, track_url(track), method: :get%></li>
+    <%end%>
+</ul>
+
+<ul>
+    <li><%= button_to "New Track", new_album_track_url(@album), method: :get%></li>
+    <li><%= button_to "Edit Album", edit_album_url(@album), method: :get%></li>
+    <li><%= button_to "Delete Album", album_url(@album), method: :delete%></li>
+    <li><%= button_to "All Albums", band_url(@band), method: :get%></li>
+</ul>

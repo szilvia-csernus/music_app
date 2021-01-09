@@ -1,0 +1,7 @@
+<li>
+    Author: <%= note.user_email %><br>
+    <%= note.text %>
+    <% if current_user.id == note.user_id %>
+        <%= button_to "Delete Note", note_url(note), method: :delete %>
+    <% end %>
+</li>

@@ -1,0 +1,9 @@
+<%= render "layouts/errors" %>
+
+<form action="<%= notes_url %>" method="POST">
+    <%= auth_token %>
+    <label for="note">New Note</label>
+    <input type="hidden" name="note[track_id]" value="<%= track_id %>">
+    <textarea name="note[text]" id="note"></textarea>
+    <input type="submit" value="Add New Note">
+</form>

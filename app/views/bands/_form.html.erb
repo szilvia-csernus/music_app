@@ -1,0 +1,22 @@
+<%= render "layouts/errors" %>
+
+<% if action == :edit %>
+    <% action_url = band_url(band) %>
+    <% button_read = "Update Band" %>
+<% else %>
+    <% action_url = bands_url %>
+    <% button_read = "Add Band" %>
+<% end %>
+
+<form action="<%= action_url %>" method="post">
+    <% if action == :edit %>
+        <input type="hidden" name="_method" value="PATCH">
+    <% end %>
+
+    <%= auth_token %>
+
+    <label for="name">Name</label>
+    <input id="name" type="text" name="band[name]" value="<%= band.name %>">
+
+    <input type="submit" value="<%= button_read %>">
+</form>

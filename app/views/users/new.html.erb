@@ -1,0 +1,19 @@
+<h1>Sign Up</h1>
+ 
+ <%= render "layouts/errors" %>
+
+<form action="/users" method="POST">
+    <%= auth_token %>
+
+    <label for='user_email'>Username</label>
+    <input
+        type="text"
+        name="user[email]"
+        id="user_email"
+        value="<% @user.email %>">
+
+    <label for="user_password">Password</label>
+    <input type="password" name="user[password]" id="user_password">
+
+    <input type="submit" value="Sign Up">
+</form>
