@@ -7,6 +7,7 @@ class User < ApplicationRecord
     validates :password, length: {minimum: 6, allow_nil: true}
 
     has_many :notes, dependent: :destroy
+    has_many :tags, dependent: :destroy
 
     after_initialize :ensure_session_token 
 

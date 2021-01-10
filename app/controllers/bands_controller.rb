@@ -1,6 +1,6 @@
 class BandsController < ApplicationController
     before_action :require_current_user!
-    #before_action :current_user_admin?, only: [:index, :flip_admin_rights]
+    before_action :require_current_user_admin!, except: [:index, :show,]
 
     def index
         @bands = Band.all
@@ -8,11 +8,16 @@ class BandsController < ApplicationController
     end
 
     def show
-        @bands = Band.all
+        
         @band = Band.find_by(id: params[:id])
+        #@tag = Tag.tagged_by_user?(current_user, @band.id, @band.class.to_s) # tagging_type accepts string
+
+        @tag = Tag.find_by(user_id: current_user.id, tagging_id: @band.id, tagging_type: @band.class.to_s)
+        
         if @band
             render :show
         else
+            @bands = Band.all
             redirect_to bands_url
         end
     end

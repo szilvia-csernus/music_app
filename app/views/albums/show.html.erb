@@ -1,6 +1,13 @@
 <%= render "layouts/errors" %>
 
 <h2><%= @album.title %></h2>
+
+<% if @tag %>
+    <%= button_to "Remove Tag", "/albums/#{@album.id}/tags/#{@tag.id}", method: :delete%>
+<% else %>
+    <%= button_to "Tag", album_tags_url(@album), method: :post%>
+<% end %>
+
 <ul>
     <% @album.tracks.each do |track| %>
         <li><%= button_to track.title, track_url(track), method: :get%></li>

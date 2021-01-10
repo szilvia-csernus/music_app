@@ -16,15 +16,21 @@ Rails.application.routes.draw do
   
   resources :bands do
     resources :albums, only: [:new]
+    resources :tags, only: [:create, :destroy]
   end
   
   resources :albums, only: [:create, :show, :edit, :update, :destroy]
   
   resources :albums, only: :show do
     resources :tracks, only: :new
+    resources :tags, only: [:create, :destroy]
   end
   
-  resources :tracks, only: [:create, :show, :edit, :update, :destroy]
+  resources :tracks, only: [:create, :edit, :update, :destroy]
+
+  resources :tracks, only: :show do
+    resources :tags, only: [:create, :destroy]
+  end
   
   resources :notes, only: [:create, :destroy]
 

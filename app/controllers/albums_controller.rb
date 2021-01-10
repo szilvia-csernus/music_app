@@ -5,6 +5,7 @@ class AlbumsController < ApplicationController
     def show
         @album = Album.find_by(id: params[:id])
         @band = Band.find_by(id: @album[:band_id])
+        @tag = Tag.find_by(user_id: current_user.id, tagging_id: @album.id, tagging_type: @album.class.to_s)
         if @album
             render :show
         else

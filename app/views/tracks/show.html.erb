@@ -35,6 +35,13 @@
 
 </table>
 
+<% if @tag %>
+    <%= button_to "Remove Tag", "/tracks/#{@track.id}/tags/#{@tag.id}", method: :delete%>
+<% else %>
+    <%= button_to "Tag", track_tags_url(@track), method: :post%>
+<% end %>
+
+
 <ul>
     <%= render @notes %>
 </ul>
