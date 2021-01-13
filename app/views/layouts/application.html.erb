@@ -11,6 +11,24 @@
 
   <header>
     <ul><li><%= button_to "Take Me Home", bands_url, method: :get %></li></ul>
+
+    <ul>
+      <li>
+        <form action="<%= search_url %>" method="get"> <!-- we use get method here
+        as it allows to be bookmarked and the user can come back to the search results.-->
+        
+        <input type="text" name="search" value="">
+
+        <input type="submit" value="Quick Sarch">
+        </form>
+      </li>
+      <li>
+        <%= button_to "Advanced Search", new_search_url, method: :get %>
+      </li>
+    </ul>
+
+
+
     <% if current_user %>
     <ul>
       <li> <%= current_user.email %></li>

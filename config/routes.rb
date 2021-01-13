@@ -34,5 +34,7 @@ Rails.application.routes.draw do
   
   resources :notes, only: [:create, :destroy]
 
+  resource :search, only: [:new, :create, :show]
+
   root to: 'bands#index'
 end

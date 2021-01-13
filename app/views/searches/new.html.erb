@@ -1,0 +1,20 @@
+<%= render "layouts/errors" %>
+
+<form action="<%= search_url %>" method="get">
+    <%= auth_token %>
+
+    <label for="band_name">Band Name</label>
+    <input id="band_name" type="text" name="band_name">
+
+    <label for="album_title">Album Title</label>
+    <input id="album_title" type="text" name="album_title">
+
+    <label for="track_title">Track Title</label>
+    <input id="track_title" type="text" name="track_title">
+
+    <input type="radio" name="tag" value="<%= true %>">Tagged
+    <input type="radio" name="tag" value="<%= false %>">Not Tagged
+    </label>
+
+    <input type="submit" value="Search">
+</form>
