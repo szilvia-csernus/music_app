@@ -1,6 +1,6 @@
 <%= render "layouts/errors" %>
 
-<h2><%= @band.name %></h2>
+<h2>Band: <%= @band.name %></h2>
 
 <% if @tag %>
     <%= button_to "Remove Tag", "/bands/#{@band.id}/tags/#{@tag.id}", method: :delete%>
@@ -8,12 +8,14 @@
     <%= button_to "Tag", band_tags_url(@band), method: :post%>
 <% end %>
 
+<br>
 <ul>
     <% @band.albums.each do |album| %>
-        <li><%= button_to album.title, album_url(album), method: :get%></li>
+        <li><%= link_to album.title, album_url(album), method: :get%></li>
     <%end%>
 </ul>
 
+<br>
 <% if current_user_admin? %>
     <ul>
         <li><%= button_to "New Album", new_band_album_url(@band), method: :get%></li>

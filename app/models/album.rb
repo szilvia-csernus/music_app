@@ -5,4 +5,6 @@ class Album < ApplicationRecord
     belongs_to :band
     has_many :tracks, dependent: :destroy
     has_many :tags, as: :tagging, dependent: :destroy
+
+    delegate :name, to: :band, prefix: true # allowes to use #band_name
 end

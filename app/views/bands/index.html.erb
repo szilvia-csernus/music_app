@@ -1,10 +1,10 @@
-<h1>Bands</h1>
-
+<h2>Bands</h2>
+<br>
 <%= render "layouts/errors" %>
 <ul>
     <%= render @bands %>
 </ul>
-
+<br>
 <% if current_user_admin? %>
     <%= button_to "New Band", new_band_url, method: :get%>
 <% end %>

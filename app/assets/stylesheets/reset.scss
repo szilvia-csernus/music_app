@@ -1,4 +1,4 @@
-html, body, section, h1, h2, p, li, a, div {
+html, body, main, header, nav, section, h1, h2, p, ul, li, a, div {
 
     margin: 0;
     border: 0;
@@ -9,4 +9,8 @@ html, body, section, h1, h2, p, li, a, div {
     color: inherit;
     box-sizing: inherit;
     background: transparent;
+}
+
+li {
+    list-style: none;
 }

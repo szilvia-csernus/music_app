@@ -6,17 +6,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Band.destroy_all
+
+Band.create(name: "Prince")
+
 10.times do 
     Band.create(name: Faker::Music.band)
 end
 
 20.times do
-    Album.create(title: Faker::Music.unique.album, year: Faker::Number.within(range: 1900..2020), 
-    live: Faker::Boolean.boolean, band_id: Faker::Number.within(range: 7..16))
+    Album.create(title: Faker::Music::Prince.unique.album, year: Faker::Number.within(range: 1900..2020), 
+    live: Faker::Boolean.boolean, band_id: Band.find_by(name: "Prince").id)
 end
 
-80.times do
-    Track.create(title: Faker::Music::Phish.song, ord: Faker::Number.within(range: 1..20), 
-    bonus: Faker::Boolean.boolean, album_id: Faker::Number.within(range: 10..31))
+300.times do
+    Track.create(title: Faker::Music::Prince.song, ord: Faker::Number.within(range: 1..20), 
+    bonus: Faker::Boolean.boolean, lyrics: Faker::Music::Prince.lyric, album_id: Faker::Number.within(range: 1..100))
 
 end

@@ -1,4 +1,6 @@
 class SearchesController < ApplicationController
+    before_action :require_current_user!
+    
     def show
         search_value = "%#{params[:search]}%" 
         band_name = "%#{params[:band_name]}%" 
@@ -37,7 +39,7 @@ class SearchesController < ApplicationController
             albums = []
                 @albums = @albums.map { |album| albums << album if album.tags.where(user_id: current_user.id).empty?}
             @albums = albums
-            
+
             tracks = []
                 @tracks.each { |track| tracks << track if track.tags.where(user_id: current_user.id).empty?}
             @tracks = tracks

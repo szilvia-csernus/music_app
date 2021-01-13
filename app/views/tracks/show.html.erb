@@ -1,6 +1,6 @@
 
-<h2><%= @track.title %></h2>
-
+<h2>Track: <%= @track.title %> by <%= @track.album_band_name%></h2>
+<br>
 <table>
     <tbody>
         <tr>
@@ -41,7 +41,7 @@
     <%= button_to "Tag", track_tags_url(@track), method: :post%>
 <% end %>
 
-
+<br>
 <ul>
     <%= render @notes %>
 </ul>
@@ -49,7 +49,7 @@
 <%= render "layouts/errors" %>
 
 <%= render '/notes/form', track_id: @track.id %>
-
+<br>
 <% if current_user_admin? %>
     <%= button_to "Album\'s Page", album_url(@album), method: :get%>
     <%= button_to "Edit Track", edit_track_url(@track), method: :get%>

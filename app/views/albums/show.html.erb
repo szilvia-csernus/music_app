@@ -1,19 +1,19 @@
 <%= render "layouts/errors" %>
 
-<h2><%= @album.title %></h2>
+<h2>Album: <%= @album.title %> by <%= @album.band_name%></h2>
 
 <% if @tag %>
     <%= button_to "Remove Tag", "/albums/#{@album.id}/tags/#{@tag.id}", method: :delete%>
 <% else %>
     <%= button_to "Tag", album_tags_url(@album), method: :post%>
 <% end %>
-
+<br>
 <ul>
     <% @album.tracks.each do |track| %>
-        <li><%= button_to track.title, track_url(track), method: :get%></li>
+        <li><%= link_to track.title, track_url(track), method: :get%></li>
     <%end%>
 </ul>
-
+<br>
 <% if current_user_admin? %>
     <ul>
         <li><%= button_to "New Track", new_album_track_url(@album), method: :get%></li>
