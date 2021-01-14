@@ -19,8 +19,8 @@ end
     live: Faker::Boolean.boolean, band_id: Band.find_by(name: "Prince").id)
 end
 
-300.times do
+100.times do
     Track.create(title: Faker::Music::Prince.song, ord: Faker::Number.within(range: 1..20), 
-    bonus: Faker::Boolean.boolean, lyrics: Faker::Music::Prince.lyric, album_id: Faker::Number.within(range: 1..100))
+    bonus: Faker::Boolean.boolean, lyrics: Faker::Music::Prince.lyric, album_id: Faker::Number.within(range: 1..20))
 
 end
