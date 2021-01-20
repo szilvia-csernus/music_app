@@ -24,17 +24,6 @@ class UsersController < ApplicationController
         render :new
     end
 
-    def show
-
-        if current_user.nil?
-            redirect_to new_session_url
-            return
-        end
-
-        @user = current_user
-        render :show
-    end
-
     def activate
         @user = User.find_by(activation_token: params[:activation_token])
         @user.activate_account!

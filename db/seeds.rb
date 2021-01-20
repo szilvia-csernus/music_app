@@ -8,19 +8,16 @@
 
 Band.destroy_all
 
-Band.create(name: "Prince")
-
 10.times do 
-    Band.create(name: Faker::Music.band)
-end
-
-20.times do
-    Album.create(title: Faker::Music::Prince.unique.album, year: Faker::Number.within(range: 1900..2020), 
-    live: Faker::Boolean.boolean, band_id: Band.find_by(name: "Prince").id)
-end
-
-100.times do
-    Track.create(title: Faker::Music::Prince.song, ord: Faker::Number.within(range: 1..20), 
-    bonus: Faker::Boolean.boolean, lyrics: Faker::Music::Prince.lyric, album_id: Faker::Number.within(range: 1..20))
-
+    Band.create(name: Faker::Music.unique.band)
+    band_id = Band.last.id
+    5.times do
+        Album.create(title: Faker::Music.unique.album, year: Faker::Number.within(range: 1900..2020), 
+        live: Faker::Boolean.boolean, band_id: band_id)
+        album_id = Album.last.id
+        10.times do
+            Track.create(title: Faker::Music::Prince.song, ord: Faker::Number.within(range: 1..20), 
+            bonus: Faker::Boolean.boolean, lyrics: Faker::Music::Prince.lyric, album_id: album_id)
+        end
+    end
 end
