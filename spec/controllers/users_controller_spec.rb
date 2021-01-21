@@ -35,19 +35,24 @@ RSpec.describe UsersController, :type => :controller do
 
   end
 
+end
+
+RSpec.describe UsersController, :type => :controller do
+
   describe "GET #index" do
-    
-    let(:user) { User.create!(email: "hi2@hi.hi", password: "hihihihi", activated: true, admin: true)}
-    
-    it "it renders the users index page" do
-        #allow(user).to receive(:require_current_user!).and_return(true)
-        #allow(user).to receive(:require_current_user_admin!).and_return(true)
-    
+   
+    let(:user) { User.create!(email: "hi1@hi.hi", password: "hihihihi", activated: true, admin: true)}
+   
+      it "it renders the users index page" do
+        allow(controller).to receive(:require_current_user!).and_return(true)
+        allow(controller).to receive(:require_current_user_admin!).and_return(true)
+        
         get :index
-
+        
         expect(response).to render_template(:index)
+  
+      end
+ 
     end
-
-  end
 end
 
