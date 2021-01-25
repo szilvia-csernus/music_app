@@ -8,13 +8,11 @@ class BandsController < ApplicationController
     end
 
     def show
+    
+        if @band = Band.find_by(id: params[:id])
+            # tagging_type accepts string
+            @tag = Tag.find_by(user_id: current_user.id, tagging_id: @band.id, tagging_type: @band.class.to_s) 
         
-        @band = Band.find_by(id: params[:id])
-        #@tag = Tag.tagged_by_user?(current_user, @band.id, @band.class.to_s) # tagging_type accepts string
-
-        @tag = Tag.find_by(user_id: current_user.id, tagging_id: @band.id, tagging_type: @band.class.to_s)
-        
-        if @band
             render :show
         else
             @bands = Band.all
@@ -38,8 +36,13 @@ class BandsController < ApplicationController
     end
 
     def edit
-        @band = Band.find_by(id: params[:id])
-        render :edit
+
+        if @band = Band.find_by(id: params[:id])
+            render :edit
+        else
+            @bands = Band.all
+            redirect_to bands_url
+        end
     end
 
     def update
@@ -53,12 +56,16 @@ class BandsController < ApplicationController
     end
 
     def destroy
-        @band = Band.find_by(id: params[:id])
-        if @band.destroy
-            redirect_to bands_url
+        if @band = Band.find_by(id: params[:id])
+            if @band.destroy
+                redirect_to bands_url
+            else
+                flash[:errors] = @band.errors.full_messages
+                redirect_to band_url(@band)
+            end
         else
-            flash[:errors] = @band.errors.full_messages
-            redirect_to band_url(@band)
+            @bands = Band.all
+            redirect_to bands_url
         end
     end
 

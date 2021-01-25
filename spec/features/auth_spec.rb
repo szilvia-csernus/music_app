@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature "the signup process" do
+feature "The signup process" do
 
   scenario "has a sign up page" do
     visit(new_user_url)

@@ -26,15 +26,27 @@ class UsersController < ApplicationController
 
     def activate
         @user = User.find_by(activation_token: params[:activation_token])
-        @user.activate_account!
-        redirect_to new_session_url
+        unless @user.nil?
+            @user.activate_account!
+            redirect_to new_session_url
+        else
+            flash[:errors] ||= []
+            flash[:errors] << "User not found!"
+            redirect_to new_session_url
+        end
     end
     
     def flip_admin_rights
         @user = User.find_by(id: params[:id])
-        @user.flip_admin!
-        @user.save!
-        redirect_to users_url
+        unless @user.nil?
+            @user.flip_admin!
+            @user.save!
+            redirect_to users_url
+        else
+            flash[:errors] ||= []
+            flash[:errors] << "User not found!"
+            redirect_back(fallback_location: root_url)
+        end
     end
 
     def index
